@@ -1,7 +1,8 @@
+import Dropdown from "@/components/Dropdown";
 import RephraseSection from "@/components/RephraseSection";
-import { gpt } from "@/lib";
+import gpt from "@/gpt";
 
-const Page = ({ params }: { params: { slug: string } }) => {
+const Page = async () => {
   return (
     <div className="w-screen h-[83vh] pt-8">
       <div className="w-11/12 h-full bg-base-200 rounded-3xl m-auto flex p-2">
@@ -14,20 +15,14 @@ const Page = ({ params }: { params: { slug: string } }) => {
             name="text"
           ></textarea>
           <div className="w-1/2 h-[10%] ml-auto flex justify-end items-center px-4 gap-4">
-            <select className="select w-full max-w-xs" name="option">
-              <option>Humanize</option>
-              <option>Formalize</option>
-              <option>Expand</option>
-              <option>Shorten</option>
-            </select>
+            <Dropdown />
             <button className="btn w-1/2 text-md" type="submit">
               Rephrase
             </button>
           </div>
         </form>
-        <div className="w-1/2 h-full py-4 px-6 flex flex-col">
-          <RephraseSection text={"hello"} />
-        </div>
+        {/* @ts-expect-error */}
+        <RephraseSection />
       </div>
     </div>
   );

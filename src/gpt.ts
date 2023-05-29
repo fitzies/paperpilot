@@ -1,4 +1,6 @@
 "use server";
+import { kv } from "@vercel/kv";
+import { revalidatePath } from "next/cache";
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
 
 async function gpt(formData: FormData) {
@@ -15,9 +17,9 @@ async function gpt(formData: FormData) {
     },
     {
       role: "user",
-      content: `Please paraphrase this text by ${formData.get(
-        "option"
-      )} and strictly only return me the text: ${formData.get("text")}`,
+      content: `Please ${formData.get("option")} this text: ${formData.get(
+        "text"
+      )}`,
     },
   ];
 
@@ -28,8 +30,8 @@ async function gpt(formData: FormData) {
 
   const chatGPTMessage = chatGPT.data.choices[0].message?.content;
 
-  console.log(chatGPTMessage);
-  return chatGPTMessage?.toString();
+  await kv.set("gpt", chatGPTMessage?.toString());
+  revalidatePath("/");
 }
 
-export { gpt };
+export default gpt;
