@@ -1,13 +1,11 @@
 import { kv } from "@vercel/kv";
-import { cookies } from "next/headers";
 import Tooltip from "./Tooltip";
 import { getServerUser } from "@/lib/util";
 
 const RephraseSection = async () => {
-  const auth = cookies().get("next-auth.session-token")?.value;
   const user = await getServerUser();
 
-  if (!auth || !user) {
+  if (!user) {
     return (
       <div className="w-1/2 h-full py-4 px-6 flex flex-col">
         <div className="p-4 lg:text-md text-sm"></div>

@@ -1,24 +1,16 @@
 "use server";
 import { kv } from "@vercel/kv";
 import { revalidatePath } from "next/cache";
-import { cookies } from "next/headers";
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
 import { getServerUser, updateServerUser } from "./util";
 
 async function gpt(formData: FormData) {
-  const auth = cookies().get("next-auth.session-token")?.value;
-
-  if (!auth) {
-    console.log("No auth");
-    return;
-  }
-
   const user = await getServerUser();
   if (!user) return;
 
   const token_cost = Math.ceil(formData.get("text")!.length / 4);
   if (user?.tokens < token_cost) {
-    await kv.set(auth, "Not enough tokens...");
+    await kv.set(user.email, "Not enough tokens...");
     revalidatePath("/");
     return;
   }

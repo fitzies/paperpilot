@@ -9,7 +9,7 @@ const Page = async () => {
       <Modal
         htmlFor="require-login"
         title="Please login to continue"
-        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, tempore."
+        text="To access the features and functionality of Paper Pilot, you are required to either log in or sign up."
       />
       <div className="w-11/12 h-full bg-base-200 rounded-3xl m-auto flex p-2">
         <form
