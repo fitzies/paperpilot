@@ -1,6 +1,6 @@
 import { kv } from "@vercel/kv";
 import Tooltip from "./Tooltip";
-import { getServerUser } from "@/lib/util";
+import { getServerUser } from "@/lib/actions";
 
 const RephraseSection = async () => {
   const user = await getServerUser();

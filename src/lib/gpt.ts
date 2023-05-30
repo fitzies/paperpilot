@@ -2,13 +2,15 @@
 import { kv } from "@vercel/kv";
 import { revalidatePath } from "next/cache";
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
-import { getServerUser, updateServerUser } from "./util";
+import { getServerUser, updateServerUser } from "./actions";
+import { handleTokenMultiplier } from "./helper";
 
 async function gpt(formData: FormData) {
   const user = await getServerUser();
   if (!user) return;
 
-  const token_cost = Math.ceil(formData.get("text")!.length / 4);
+  const token_cost = handleTokenMultiplier(formData.get("text")!.toString());
+
   if (user?.tokens < token_cost) {
     await kv.set(user.email, "Not enough tokens...");
     revalidatePath("/");
