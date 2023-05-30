@@ -22,10 +22,10 @@ const Page = ({ params }: { params: { slug: string } }) => {
       <div className="w-1/3 bg-base-200 p-8 rounded-2xl flex flex-col gap-4">
         <h1 className="font-bold text-3xl mx-auto">Sign in</h1>
         <InputGroup
-          title="Your Email"
-          label="Email"
+          title="Your Username"
+          label="Username"
           type="text"
-          placeholder="johndoe@gmail.com"
+          placeholder="johndoe"
           onchange={(e: any) => {
             username.current = e.target.value;
           }}
