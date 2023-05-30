@@ -1,6 +1,6 @@
 const Dropdown = () => {
   return (
-    <select className="select w-full max-w-xs" name="option">
+    <select className="select lg:w-1/2 max-w-xs" name="option">
       <option>Humanize</option>
       <option>Formalize</option>
       <option>Expand</option>

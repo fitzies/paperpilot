@@ -1,27 +1,66 @@
-type props = {};
+"use client";
 
-const Nav = (props: props) => {
+import { signIn, signOut, useSession } from "next-auth/react";
+import Tooltip from "./Tooltip";
+
+const UserDropDown = () => {
+  const { data: session } = useSession();
+
   return (
-    <div className="navbar bg-base-100 px-4">
+    <>
+      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+        <div className="w-10 rounded-full">
+          <img
+            src={`https://api.dicebear.com/6.x/identicon/svg?seed=${session?.user?.email}`}
+          />
+        </div>
+      </label>
+      <ul
+        tabIndex={0}
+        className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+      >
+        <li>
+          <a>Account</a>
+        </li>
+        <li>
+          <a className="justify-between">
+            Pricing
+            <span className="badge">New</span>
+          </a>
+        </li>
+        <li onClick={() => signOut()}>
+          <a>Logout</a>
+        </li>
+      </ul>
+    </>
+  );
+};
+
+const Nav = () => {
+  const { data: session } = useSession();
+
+  return (
+    <div className="navbar bg-base-100 pt-3 px-6">
       <div className="flex-1">
         <a className="btn btn-ghost normal-case text-xl">paper pilot</a>
       </div>
-      <div className="flex-none">
-        <button className="btn btn-square btn-ghost">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="inline-block w-5 h-5 stroke-current"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-            ></path>
-          </svg>
-        </button>
+      <div className="flex-none gap-2">
+        <div className="dropdown dropdown-end">
+          {session && session.user ? (
+            <div className="flex justify-center items-center gap-4">
+              <Tooltip text="How many tokens you have" location="bottom">
+                <div className="bg-base-200 text-sm p-2 rounded-full cursor-pointer">
+                  {session.user.tokens}
+                </div>
+              </Tooltip>
+              <UserDropDown />
+            </div>
+          ) : (
+            <button className="btn" onClick={() => signIn()}>
+              Login
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

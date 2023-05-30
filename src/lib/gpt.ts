@@ -1,9 +1,32 @@
 "use server";
 import { kv } from "@vercel/kv";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
+import { getServerUser, updateServerUser } from "./util";
 
 async function gpt(formData: FormData) {
+  const auth = cookies().get("next-auth.session-token")?.value;
+
+  if (!auth) {
+    console.log("No auth");
+    return;
+  }
+
+  const user = await getServerUser();
+  if (!user) return;
+
+  const token_cost = Math.ceil(formData.get("text")!.length / 4);
+  if (user?.tokens < token_cost) {
+    await kv.set(auth, "Not enough tokens...");
+    revalidatePath("/");
+    return;
+  }
+
+  const updatedUser = await updateServerUser({
+    tokens: user.tokens - token_cost,
+  });
+
   const configuration = new Configuration({
     apiKey: process.env.OPENAI_API,
   });
@@ -30,7 +53,8 @@ async function gpt(formData: FormData) {
 
   const chatGPTMessage = chatGPT.data.choices[0].message?.content;
 
-  await kv.set("gpt", chatGPTMessage?.toString());
+  // await kv.set(auth, chatGPTMessage?.toString());
+  await kv.set(user.email, chatGPTMessage?.toString());
   revalidatePath("/");
 }
 

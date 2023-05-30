@@ -1,25 +1,30 @@
-import Dropdown from "@/components/Dropdown";
+import Modal from "@/components/Modal";
 import RephraseSection from "@/components/RephraseSection";
-import gpt from "@/gpt";
+import Selection from "@/components/Selection";
+import gpt from "@/lib/gpt";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 const Page = async () => {
+  const data = await getServerSession(authOptions);
+
   return (
     <div className="w-screen h-[83vh] pt-8">
+      <Modal
+        htmlFor="require-login"
+        title="Please login to continue"
+        text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, tempore."
+      />
       <div className="w-11/12 h-full bg-base-200 rounded-3xl m-auto flex p-2">
         <form
           className="w-1/2 h-full p-4 flex flex-col gap-4 border-r-2 border-base-300"
           action={gpt}
         >
           <textarea
-            className="textarea textarea-ghost w-full h-[90%] resize-none"
+            className="textarea textarea-ghost w-full lg:h-[90%] h-[80%] resize-none lg:text-md text-sm"
             name="text"
           ></textarea>
-          <div className="w-1/2 h-[10%] ml-auto flex justify-end items-center px-4 gap-4">
-            <Dropdown />
-            <button className="btn w-1/2 text-md" type="submit">
-              Rephrase
-            </button>
-          </div>
+          <Selection />
         </form>
         {/* @ts-expect-error */}
         <RephraseSection />
