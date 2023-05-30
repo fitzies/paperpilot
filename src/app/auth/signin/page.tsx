@@ -2,7 +2,7 @@
 
 import InputGroup from "@/components/InputGroup";
 import { signIn } from "next-auth/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Checkbox from "@/components/Checkbox";
 import Link from "next/link";
 
@@ -10,7 +10,10 @@ const Page = ({ params }: { params: { slug: string } }) => {
   const username = useRef<string>();
   const password = useRef<string>();
 
+  const [loading, setLoading] = useState(false);
+
   const submit = async () => {
+    setLoading(() => true);
     const result = await signIn("credentials", {
       username: username.current,
       password: password.current,
@@ -25,7 +28,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
         <div className="flex flex-col gap-3">
           <h1 className="font-bold text-3xl">Sign in to your account</h1>
           <p>
-            Dont have an account?
+            Dont have an account?{" "}
             <Link
               href="/auth/signup"
               className="text-secondary hover:underline"
@@ -57,7 +60,16 @@ const Page = ({ params }: { params: { slug: string } }) => {
             Forgot password
           </p>
         </div>
-        <button className="btn btn-secondary">Sign in</button>
+        {!loading ? (
+          <button className="btn btn-secondary" onClick={submit}>
+            Sign in
+          </button>
+        ) : (
+          <button
+            className="btn btn-secondary loading"
+            onClick={submit}
+          ></button>
+        )}
       </div>
     </div>
   );
