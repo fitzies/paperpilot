@@ -3,6 +3,8 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import prisma from "./prisma";
+import { kv } from "@vercel/kv";
+import { revalidatePath } from "next/cache";
 
 const getServerUser = async () => {
   const data: { user: { email: string } } | null = await getServerSession(

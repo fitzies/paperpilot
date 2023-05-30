@@ -17,5 +17,5 @@ model User {
   email String  @unique
   username  String?
   password String
-  tokens Int @default(100)
+  tokens Int @default(500)
 }

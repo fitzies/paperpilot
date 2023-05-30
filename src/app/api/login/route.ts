@@ -16,7 +16,7 @@ export async function POST(request: Request) {
   });
 
   if (user && (await bycrypt.compare(body.password, user.password))) {
-    const { email, username, tokens } = user;
+    // const { email, username, tokens } = user;
     return new Response(JSON.stringify(user));
   } else {
     return new Response(JSON.stringify(null));
