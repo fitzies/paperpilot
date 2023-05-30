@@ -2,7 +2,6 @@
 
 import { signIn, signOut, useSession } from "next-auth/react";
 import Tooltip from "./Tooltip";
-import Image from "next/image";
 
 const UserDropDown = () => {
   const { data: session } = useSession();
@@ -11,7 +10,7 @@ const UserDropDown = () => {
     <>
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
-          <Image
+          <img
             src={`https://api.dicebear.com/6.x/identicon/svg?seed=${session?.user?.email}`}
             alt="profilepicture"
           />
