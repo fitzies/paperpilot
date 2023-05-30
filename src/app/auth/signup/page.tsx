@@ -132,9 +132,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
           />
           <div className="w-full flex justify-between items-center pb-2">
             <Checkbox text="Remember me" />
-            <p className="text-sm text-gray-300 hover:text-white duration-150 cursor-pointer">
-              Forgot password
-            </p>
+            <p className="text-sm text-gray-300 hover:text-white duration-150 cursor-pointer"></p>
           </div>
           {!loading ? (
             <button className="btn btn-secondary mt-2" onClick={submit}>
