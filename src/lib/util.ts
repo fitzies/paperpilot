@@ -8,8 +8,11 @@ const getServerUser = async () => {
   const data: { user: { email: string } } | null = await getServerSession(
     authOptions
   );
+
+  if (!data) return;
+
   const user = await prisma.user.findFirst({
-    where: { email: data!.user.email },
+    where: { email: data.user.email },
   });
 
   return user;

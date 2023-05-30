@@ -2,12 +2,8 @@ import Modal from "@/components/Modal";
 import RephraseSection from "@/components/RephraseSection";
 import Selection from "@/components/Selection";
 import gpt from "@/lib/gpt";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 const Page = async () => {
-  const data = await getServerSession(authOptions);
-
   return (
     <div className="w-screen h-[83vh] pt-8">
       <Modal
