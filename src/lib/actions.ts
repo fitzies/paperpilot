@@ -3,7 +3,6 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import prisma from "./prisma";
-import { kv } from "@vercel/kv";
 import { revalidatePath } from "next/cache";
 
 const getServerUser = async () => {
@@ -32,4 +31,11 @@ const updateServerUser = async (userData: any) => {
   return updatedUser;
 };
 
-export { getServerUser, updateServerUser };
+const deleteAccount = async (data: FormData) => {
+  const deletedUser = await prisma.user.delete({
+    where: { email: data.get("email")?.toString() },
+  });
+  revalidatePath(`/account${deletedUser.username}`);
+};
+
+export { getServerUser, updateServerUser, deleteAccount };

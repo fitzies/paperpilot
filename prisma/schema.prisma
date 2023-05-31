@@ -18,4 +18,5 @@ model User {
   username  String?
   password String
   tokens Int @default(500)
+  avatar String?
 }

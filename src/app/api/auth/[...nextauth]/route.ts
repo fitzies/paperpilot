@@ -67,6 +67,7 @@ const handler = NextAuth({
       session.user.email = prismaUser.email;
       session.user.username = prismaUser.username!;
       session.user.tokens = prismaUser.tokens;
+      session.user.avatar = prismaUser.avatar ?? undefined;
 
       return session;
     },

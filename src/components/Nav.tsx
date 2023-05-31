@@ -2,6 +2,7 @@
 
 import { signIn, signOut, useSession } from "next-auth/react";
 import Tooltip from "./Tooltip";
+import Link from "next/link";
 
 const UserDropDown = () => {
   const { data: session } = useSession();
@@ -11,7 +12,9 @@ const UserDropDown = () => {
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
           <img
-            src={`https://api.dicebear.com/6.x/identicon/svg?seed=${session?.user?.email}`}
+            src={`https://api.dicebear.com/6.x/identicon/svg?seed=${
+              session?.user.avatar ?? session?.user?.email
+            }`}
             alt="profilepicture"
           />
         </div>
@@ -21,7 +24,7 @@ const UserDropDown = () => {
         className="mt-40 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
       >
         <li>
-          <a>Account</a>
+          <Link href={`/account/${session?.user.username}`}>Account</Link>
         </li>
         <li>
           <a className="justify-between">
@@ -43,7 +46,9 @@ const Nav = () => {
   return (
     <div className="navbar bg-base-100 pt-3 px-6">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">paper pilot</a>
+        <Link href="/" className="btn btn-ghost normal-case text-xl">
+          paper pilot
+        </Link>
       </div>
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end">

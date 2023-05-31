@@ -2,6 +2,7 @@ type props = {
   htmlFor: string;
   title: string;
   text: string;
+  children?: any;
 };
 
 const Modal = (props: props) => {
@@ -18,6 +19,7 @@ const Modal = (props: props) => {
           </label>
           <h3 className="text-lg font-bold">{props.title}</h3>
           <p className="py-4">{props.text}</p>
+          {props.children}
         </div>
       </div>
     </>
