@@ -39,8 +39,8 @@ const checkout = async (data: FormData) => {
       },
     ],
     mode: "payment", //subscription
-    success_url: `$https://paperpilot.vercel.app/pricing/?success=true+${item.name}`,
-    cancel_url: `$https://paperpilot.vercel.app/pricing/?canceled=true`,
+    success_url: `https://paperpilot.vercel.app/pricing/?success=true+${item.name}`,
+    cancel_url: `https://paperpilot.vercel.app/pricing/?canceled=true`,
   });
   console.log(session);
 
