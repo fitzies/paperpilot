@@ -27,10 +27,10 @@ const UserDropDown = () => {
           <Link href={`/account/${session?.user.username}`}>Account</Link>
         </li>
         <li>
-          <a className="justify-between">
+          <Link href="/pricing" className="justify-between">
             Pricing
             <span className="badge">New</span>
-          </a>
+          </Link>
         </li>
         <li onClick={() => signOut()}>
           <a>Logout</a>

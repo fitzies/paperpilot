@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 import prisma from "./prisma";
 import { revalidatePath } from "next/cache";
 import { signOut } from "next-auth/react";
+import { cookies } from "next/headers";
 
 const getServerUser = async () => {
   const data: { user: { email: string } } | null = await getServerSession(
@@ -32,12 +33,4 @@ const updateServerUser = async (userData: any) => {
   return updatedUser;
 };
 
-const deleteAccount = async (data: FormData) => {
-  const deletedUser = await prisma.user.delete({
-    where: { email: data.get("email")?.toString() },
-  });
-  await signOut();
-  revalidatePath(`/account${deletedUser.username}`);
-};
-
-export { getServerUser, updateServerUser, deleteAccount };
+export { getServerUser, updateServerUser };

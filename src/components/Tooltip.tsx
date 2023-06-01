@@ -1,7 +1,7 @@
 type props = {
   text: string;
   children: React.ReactNode;
-  location?: "bottom" | "left" | "right";
+  location?: "bottom" | "left" | "right" | "top";
   style?: string;
 };
 

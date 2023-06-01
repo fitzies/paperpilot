@@ -61,8 +61,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
       console.log("a");
       return;
     }
-    const res = await fetch("https://paperpilot.vercel.app/api/user", {
-      //http://localhost:3000/api/user
+    const res = await fetch(`${process.env.SERVER_URL}/api/user`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
