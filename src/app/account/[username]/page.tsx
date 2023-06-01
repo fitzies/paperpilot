@@ -21,7 +21,7 @@ const Page = ({ params }: { params: { username: string } }) => {
   const [deleteCredentials, setDeleteCredentials] = useState<string>("");
 
   const deleteAccount = async () => {
-    const res = await fetch(`${process.env.SERVER_URL}/api/user/delete`, {
+    const res = await fetch(`https://paperpilot.vercel.app/api/user/delete`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

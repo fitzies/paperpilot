@@ -19,7 +19,7 @@ const handler = NextAuth({
       async authorize(credentials, req) {
         // Add logic here to look up the user from the credentials supplied
         console.log(credentials);
-        const res = await fetch(`${process.env.SERVER_URL}/api/login`, {
+        const res = await fetch(`https://paperpilot.vercel.app/api/login`, {
           //https://paperpilot.vercel.app/api/login
           method: "POST",
           headers: { "Content-Type": "application/json" },
