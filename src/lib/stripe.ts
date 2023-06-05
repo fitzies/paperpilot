@@ -8,8 +8,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 });
 
 const storeItems = new Map([
-  [1, { priceInCents: 99, name: "20000 credits" }],
-  [2, { priceInCents: 399, name: "50000 credits" }],
+  [1, { priceInCents: 99, name: "1000 credits" }],
+  [2, { priceInCents: 399, name: "5000 credits" }],
   [3, { priceInCents: 499, name: "Monthly" }],
 ]);
 

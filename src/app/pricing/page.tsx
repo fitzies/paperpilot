@@ -18,12 +18,12 @@ const Page = async (props: Props) => {
   const items: { title: string; text: string; image: any; options?: string }[] =
     [
       {
-        title: "20000 credits",
+        title: "1000 credits",
         text: "$0.99",
         image: dog,
       },
       {
-        title: "50000 credits",
+        title: "5000 credits",
         text: "$3.99",
         image: teddybear,
       },
