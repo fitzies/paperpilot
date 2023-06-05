@@ -24,7 +24,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
 
   return (
     <div className="w-screen min-h-[80vh] flex justify-center items-center">
-      <div className="w-1/3 bg-base-200 px-10 py-12 rounded-2xl flex flex-col gap-5">
+      <div className="lg:w-1/3 w-5/6 bg-base-200 px-10 py-12 rounded-2xl flex flex-col gap-5">
         <div className="flex flex-col gap-3">
           <h1 className="font-bold text-3xl">Sign in to your account</h1>
           <p>

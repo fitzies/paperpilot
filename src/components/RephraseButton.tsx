@@ -1,10 +1,9 @@
-import { getServerUser } from "@/lib/actions";
-import { kv } from "@vercel/kv";
+import { useSession } from "next-auth/react";
 
-const RephraseButton = async () => {
-  const user = await getServerUser();
+const RephraseButton = (props: { loading: boolean }) => {
+  const { data: session } = useSession();
 
-  if (!user) {
+  if (!session || !session.user) {
     return (
       <label className="btn lg:w-1/4 text-md" htmlFor="require-login">
         Rephrase
@@ -12,16 +11,9 @@ const RephraseButton = async () => {
     );
   }
 
-  // if (loading === "1") {
-  //   <label
-  //     className="btn lg:w-1/4 text-md loading"
-  //     htmlFor="require-login"
-  //   ></label>;
-  // }
-
   return (
     <button className="btn lg:w-1/4 text-md" type="submit">
-      <span>Rephrase</span>
+      {!props.loading ? <span>Rephrase</span> : <span>...</span>}
     </button>
   );
 };

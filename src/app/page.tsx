@@ -1,8 +1,6 @@
+import Form from "@/components/Form";
 import Modal from "@/components/Modal";
 import RephraseSection from "@/components/RephraseSection";
-import Selection from "@/components/Selection";
-import Textarea from "@/components/Textarea";
-import gpt from "@/lib/gpt";
 
 const Page = async () => {
   return (
@@ -13,13 +11,8 @@ const Page = async () => {
         text="To access the features and functionality of Paper Pilot, you are required to either log in or sign up."
       />
       <div className="w-11/12 h-full bg-base-200 rounded-3xl m-auto flex p-2">
-        <form
-          className="w-1/2 h-full p-4 flex flex-col gap-4 border-r-2 border-base-300"
-          action={gpt}
-        >
-          <Textarea />
-          <Selection />
-        </form>
+        <Form />
+
         {/* @ts-expect-error */}
         <RephraseSection />
       </div>

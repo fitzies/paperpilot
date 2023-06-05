@@ -1,3 +1,5 @@
+"use client";
+
 type props = {
   text: string;
   children: React.ReactNode;

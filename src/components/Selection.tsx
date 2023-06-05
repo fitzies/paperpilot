@@ -1,9 +1,13 @@
+"use client";
+
 import Dropdown from "./Dropdown";
 import RephraseButton from "./RephraseButton";
 import Tooltip from "./Tooltip";
 import TokenCount from "./TokenCount";
 
-type props = {};
+type props = {
+  loading: boolean;
+};
 
 const Selection = (props: props) => {
   return (
@@ -12,8 +16,7 @@ const Selection = (props: props) => {
         <TokenCount />
       </Tooltip>
       <Dropdown />
-      {/* @ts-expect-error */}
-      <RephraseButton />
+      <RephraseButton loading={props.loading} />
     </div>
   );
 };
