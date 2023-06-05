@@ -1,9 +1,10 @@
+import { getServerUser } from "@/lib/actions";
 import { useSession } from "next-auth/react";
 
-const RephraseButton = (props: { loading: boolean }) => {
-  const { data: session } = useSession();
+const RephraseButton = () => {
+  const user = getServerUser();
 
-  if (!session || !session.user) {
+  if (!user) {
     return (
       <label className="btn lg:w-1/4 text-md" htmlFor="require-login">
         Rephrase
@@ -13,7 +14,7 @@ const RephraseButton = (props: { loading: boolean }) => {
 
   return (
     <button className="btn lg:w-1/4 text-md" type="submit">
-      {!props.loading ? <span>Rephrase</span> : <span>...</span>}
+      <span>Rephrase</span>
     </button>
   );
 };
