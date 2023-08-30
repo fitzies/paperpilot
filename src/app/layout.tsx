@@ -1,6 +1,9 @@
+"use client";
+
 import Nav from "@/components/Nav";
 import "./globals.css";
 import type { Metadata } from "next";
+import { SessionProvider } from "next-auth/react";
 
 export const metadata: Metadata = {
   title: "Paperpilot",
@@ -15,8 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-stem">
-        <Nav />
-        {children}
+        <SessionProvider>
+          <Nav />
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );

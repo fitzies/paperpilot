@@ -16,26 +16,37 @@ const Page = ({ params }: { params: { slug: string } }) => {
     const result = await signIn("credentials", {
       username: username,
       password: password,
+      redirect: true,
+      callbackUrl: "/",
     });
   };
 
   return (
     <div className="w-screen">
-      <form className="w-1/3 mx-auto py-10 flex flex-col items-center gap-3">
+      <div className="w-1/3 mx-auto py-10 flex flex-col items-center gap-3">
         <h1 className="text-5xl font-bold my-6">Sign in</h1>
         <LineInput
           name="email"
           text="Email address"
           placeholder="Enter your email address"
           type="text"
+          value={username}
+          onChange={setUsername}
         />
         <LineInput
           name="password"
           text="Password"
           placeholder="Enter your password"
           type="password"
+          value={password}
+          onChange={setPassword}
         />
-        <Button text="Continue with email" color="white" className="w-2/3" />
+        <Button
+          text="Continue with email"
+          color="white"
+          className="w-2/3"
+          onClick={onSubmit}
+        />
         <div className="text-grey underline mt-1 cursor-pointer">
           Forget password?
         </div>
@@ -59,7 +70,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
           icon={<BsGithub className="text-xl" />}
           hover
         />
-      </form>
+      </div>
       <p className="text-grey text-center w-1/3 mx-auto text-sm mt-2">
         By clicking &quot;Continue with Apple/Google/Email&quot; above, you
         acknowledge that you have read and understood, and agree to Paperpilots

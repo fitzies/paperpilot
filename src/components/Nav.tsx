@@ -1,9 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import Button from "./Button";
+import { useSession } from "next-auth/react";
 
 type NavItem = { name: string; link: string };
 
 const Nav = () => {
+  const { data: session, status } = useSession();
+
   const items: NavItem[] = [
     { name: "Platform", link: "/platform" },
     { name: "Waitlist", link: "/waitlist" },
@@ -27,7 +32,11 @@ const Nav = () => {
         })}
       </div>
       <div className="w-1/3 flex justify-end">
-        <Button text="Sign in" href="/auth/signin" />
+        {status === "unauthenticated" ? (
+          <Button text="Sign in" href="/auth/signin" />
+        ) : status === "authenticated" ? (
+          <Button text="Account" />
+        ) : null}
       </div>
     </div>
   );
