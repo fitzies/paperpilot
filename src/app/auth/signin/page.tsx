@@ -26,7 +26,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
           Forget password?
         </div>
         <Link href={"/auth/signup"} className="text-grey underline mt-1">
-          Don't have an account? Create one.
+          Dont have an account? Create one.
         </Link>
         <div className="w-2/3 bg-gray-200 h-[2px] my-3"></div>
         <Button
@@ -47,8 +47,8 @@ const Page = ({ params }: { params: { slug: string } }) => {
         />
       </form>
       <p className="text-grey text-center w-1/3 mx-auto text-sm mt-2">
-        By clicking "Continue with Apple/Google/Email" above, you acknowledge
-        that you have read and understood, and agree to Paperpilot's{" "}
+        By clicking &quot;Continue with Apple/Google/Email&quot; above, you
+        acknowledge that you have read and understood, and agree to Paperpilots
         <span className="underline">Terms & Conditions</span>.
       </p>
     </div>

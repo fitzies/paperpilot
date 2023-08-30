@@ -13,7 +13,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
         </h1>
       </div>
       <p className="text-grey text-center text-lg w-2/3">
-        Your pathway to polished, undetectable essays. From AI's creation to our
+        Your pathway to polished, undetectable essays. From AIs creation to our
         mastery, achieve academic brilliance that outshines AI detection
         algorithms.
       </p>

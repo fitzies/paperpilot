@@ -40,8 +40,8 @@ const Page = ({ params }: { params: { slug: string } }) => {
         />
       </form>
       <p className="text-grey text-center w-1/3 mx-auto text-sm mt-8">
-        By clicking "Continue with Apple/Google/Email" above, you acknowledge
-        that you have read and understood, and agree to Paperpilot's{" "}
+        By clicking &quot;Continue with Apple/Google/Email&quot; above, you
+        acknowledge that you have read and understood, and agree to Paperpilots
         <span className="underline">Terms & Conditions</span>.
       </p>
     </div>
