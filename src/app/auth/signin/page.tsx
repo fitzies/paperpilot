@@ -1,10 +1,24 @@
+"use client";
+
 import Button from "@/components/Button";
 import { FcGoogle } from "react-icons/fc";
 import { BsGithub } from "react-icons/bs";
 import LineInput from "@/components/LineInput";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
+import { useState } from "react";
 
 const Page = ({ params }: { params: { slug: string } }) => {
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const onSubmit = async () => {
+    const result = await signIn("credentials", {
+      username: username,
+      password: password,
+    });
+  };
+
   return (
     <div className="w-screen">
       <form className="w-1/3 mx-auto py-10 flex flex-col items-center gap-3">
