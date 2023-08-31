@@ -23,27 +23,17 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials, req) {
         // If signing up for the first time
         if (credentials!.newUser.toLowerCase() === "true") {
-          // Checking if the email exists
-          const emailExists = !!(await prisma.user.findFirst({
-            where: { email: credentials!.email },
-          }));
-          // If the email exists, return null
-          if (emailExists) {
-            console.log("Email exists");
-            return null;
-          } else {
-            // The email doesn't exist, so we create a new user
-            const newUser = await prisma.user.create({
-              data: {
-                email: credentials!.email,
-                password: credentials!.password,
-                waitlisted: true,
-              },
-            });
-            // Return the new user because the email didn't exist before
-            await sendVerificationEmail(newUser.email);
-            return newUser;
-          }
+          // The email doesn't exist, so we create a new user
+          const newUser = await prisma.user.create({
+            data: {
+              email: credentials!.email,
+              password: credentials!.password,
+              waitlisted: true,
+            },
+          });
+          // Return the new user because the email didn't exist before
+          await sendVerificationEmail(newUser.email);
+          return newUser;
         } else {
           // If we are signing in an existing user
           // Find the existing user with the email
