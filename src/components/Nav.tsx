@@ -1,19 +1,10 @@
-"use client";
-
 import Link from "next/link";
 import Button from "./Button";
-import { useSession } from "next-auth/react";
+import LoadingSpinner from "./LoadingSpinner";
+import { getUserFromServer } from "@/lib/utils";
 
-type NavItem = { name: string; link: string };
-
-const Nav = () => {
-  const { data: session, status } = useSession();
-
-  const items: NavItem[] = [
-    { name: "Platform", link: "/platform" },
-    { name: "Waitlist", link: "/waitlist" },
-    { name: "Pricing", link: "/pricing" },
-  ];
+const Nav = async () => {
+  const user = await getUserFromServer();
 
   return (
     <div className="w-screen flex justify-between px-10 py-6">
@@ -23,19 +14,27 @@ const Nav = () => {
         </Link>
       </div>
       <div className="flex gap-6 w-1/3 justify-center">
-        {items.map((item: NavItem) => {
-          return (
-            <Link href={item.link} className="cursor-pointer" key={item.name}>
-              {item.name}
-            </Link>
-          );
-        })}
+        {user && user.waitlisted === false ? (
+          <Link href={"/platform"} className="cursor-pointer">
+            Platform
+          </Link>
+        ) : null}
+        {!user || user.waitlisted === true ? (
+          <Link href={"/waitlist"} className="cursor-pointer">
+            Waitlist
+          </Link>
+        ) : null}
+        <Link href={"/pricing"} className="cursor-pointer">
+          Pricing
+        </Link>
       </div>
+
       <div className="w-1/3 flex justify-end">
-        {status === "unauthenticated" ? (
+        {/* {status === "loading" ? <Button loading text="Sign in" /> : null} */}
+        {!user ? (
           <Button text="Sign in" href="/auth/signin" />
-        ) : status === "authenticated" ? (
-          <Button text="Account" />
+        ) : user ? (
+          <Button text="Account" href="/account" />
         ) : null}
       </div>
     </div>

@@ -1,6 +1,4 @@
 async function generateResponse(text: string) {
-  console.log("generating");
-
   const res = await fetch(
     process.env.GPT_URL || "http://localhost:3000/api/gpt",
     {

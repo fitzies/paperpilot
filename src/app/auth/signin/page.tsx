@@ -5,20 +5,39 @@ import { FcGoogle } from "react-icons/fc";
 import { BsGithub } from "react-icons/bs";
 import LineInput from "@/components/LineInput";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
 import { useState } from "react";
+import { isValidForm, signInWithCredentials } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import Divider from "@/components/Divider";
 
 const Page = ({ params }: { params: { slug: string } }) => {
-  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [submitted, setSubmitted] = useState<boolean>(false);
+
+  const router = useRouter();
 
   const onSubmit = async () => {
-    const result = await signIn("credentials", {
-      username: username,
-      password: password,
-      redirect: true,
-      callbackUrl: "/",
-    });
+    setSubmitted(() => true);
+    const validForm = isValidForm(email, password);
+    if (!validForm.isEmailValid) {
+      toast.error("Please enter a valid email");
+      setSubmitted(() => false);
+      return;
+    }
+    if (password.length < 2) {
+      toast.error("Please enter a valid password greater than 8 characters");
+      setSubmitted(() => false);
+      return;
+    }
+    const result = await signInWithCredentials(email, password, false);
+    if (result!.url === null) {
+      toast.error("User doesn't exist/wrong credentials");
+    } else {
+      router.push("/");
+    }
+    setSubmitted(() => false);
   };
 
   return (
@@ -30,8 +49,8 @@ const Page = ({ params }: { params: { slug: string } }) => {
           text="Email address"
           placeholder="Enter your email address"
           type="text"
-          value={username}
-          onChange={setUsername}
+          value={email}
+          onChange={setEmail}
         />
         <LineInput
           name="password"
@@ -41,19 +60,23 @@ const Page = ({ params }: { params: { slug: string } }) => {
           value={password}
           onChange={setPassword}
         />
-        <Button
-          text="Continue with email"
-          color="white"
-          className="w-2/3"
-          onClick={onSubmit}
-        />
+        {!submitted ? (
+          <Button
+            text="Continue with email"
+            color="white"
+            className="w-2/3"
+            onClick={onSubmit}
+          />
+        ) : (
+          <Button text="" color="white" loading className="w-2/3" />
+        )}
         <div className="text-grey underline mt-1 cursor-pointer">
           Forget password?
         </div>
         <Link href={"/auth/signup"} className="text-grey underline mt-1">
           Dont have an account? Create one.
         </Link>
-        <div className="w-2/3 bg-gray-200 h-[2px] my-3"></div>
+        <Divider />
         <Button
           text="Continue with Google"
           color="white"

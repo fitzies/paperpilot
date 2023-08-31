@@ -1,8 +1,11 @@
 import Button from "@/components/Button";
 import Image from "next/image";
 import screenshot from "@/assets/screenshot.png";
+import { getUserFromServer } from "@/lib/utils";
 
-const Page = ({ params }: { params: { slug: string } }) => {
+const Page = async ({ params }: { params: { slug: string } }) => {
+  const user = await getUserFromServer();
+
   return (
     <div className="w-screen px-8 py-12 flex flex-col items-center gap-8">
       <div className="text-7xl text-center">
@@ -18,7 +21,11 @@ const Page = ({ params }: { params: { slug: string } }) => {
         algorithms.
       </p>
       <div className="flex gap-4">
-        <Button text="Join the waitlist" size="large" color="black" />
+        {user?.waitlisted === true || !user ? (
+          <Button text="Join the waitlist" size="large" color="black" />
+        ) : (
+          <Button text="Platform" size="large" color="black" />
+        )}
         <Button text="Discover" size="large" />
       </div>
       <div className="w-5/6 rounded-lg p-1">

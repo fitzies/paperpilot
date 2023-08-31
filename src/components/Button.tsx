@@ -71,7 +71,13 @@ const Button: React.FC<ButtonProps> = ({
       } rounded-lg  duration-300 items-center gap-2`}
     >
       {icon}
-      {loading ? <LoadingSpinner /> : text}
+      {loading ? (
+        <div className="px-2">
+          <LoadingSpinner />
+        </div>
+      ) : (
+        text
+      )}
     </button>
   );
 };
