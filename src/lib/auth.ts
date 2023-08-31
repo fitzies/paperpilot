@@ -29,6 +29,7 @@ export const authOptions: NextAuthOptions = {
           }));
           // If the email exists, return null
           if (emailExists) {
+            console.log("Email exists");
             return null;
           } else {
             // The email doesn't exist, so we create a new user
@@ -43,10 +44,8 @@ export const authOptions: NextAuthOptions = {
             await sendVerificationEmail(newUser.email);
             return newUser;
           }
-        }
-
-        // If we are signing in an existing user
-        if (credentials!.newUser.toLowerCase() === "false") {
+        } else {
+          // If we are signing in an existing user
           // Find the existing user with the email
           const existingUser = await prisma.user.findFirst({
             where: {
@@ -56,10 +55,14 @@ export const authOptions: NextAuthOptions = {
           });
           // If the user exists, return that user
           if (existingUser) {
+            console.log("User does exist");
             return existingUser;
+          } else {
+            // If the user doesn't exist
+            console.log(credentials?.password);
+            console.log("User doesn't exist");
+            return null;
           }
-          // If the user doesn't exist
-          return null;
         }
       },
     }),

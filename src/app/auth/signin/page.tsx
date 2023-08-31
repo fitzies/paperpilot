@@ -32,6 +32,8 @@ const Page = ({ params }: { params: { slug: string } }) => {
       return;
     }
     const result = await signInWithCredentials(email, password, false);
+    console.log(result);
+    console.log(1);
     if (result!.url === null) {
       toast.error("User doesn't exist/wrong credentials");
     } else {

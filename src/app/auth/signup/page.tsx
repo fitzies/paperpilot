@@ -34,7 +34,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
     if (result!.url === null) {
       toast.error("This email is already assocaited with an account.");
     } else {
-      router.push("/");
+      router.refresh();
     }
     setSubmitted(() => false);
   };

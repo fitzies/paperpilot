@@ -31,8 +31,9 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   const router = useRouter();
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (event: any) => {
     if (onClick) {
+      event.preventDefault();
       onClick();
     }
     if (href) {
@@ -63,7 +64,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      onClick={() => handleButtonClick()}
+      onClick={(e) => handleButtonClick(e)}
       className={`${className} ${
         borderless ? "border-2 border-light" : "border-2 border-black"
       } flex justify-center ${getSize()} ${

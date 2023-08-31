@@ -33,7 +33,7 @@ async function signInWithCredentials(
       email: email,
       password: hashedPassword,
       newUser: newUser,
-      redirect: true,
+      redirect: false,
       callbackUrl: "/",
     });
   }
