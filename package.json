@@ -36,6 +36,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "encoding": "^0.1.13",
     "prisma": "^5.2.0"
   }
 }
