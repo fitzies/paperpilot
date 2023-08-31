@@ -32,7 +32,8 @@ export const authOptions: NextAuthOptions = {
             },
           });
           // Return the new user because the email didn't exist before
-          await sendVerificationEmail(newUser.email);
+          //await sendVerificationEmail(newUser.email);
+          console.log("Sending user cookie");
           return newUser;
         } else {
           // If we are signing in an existing user
