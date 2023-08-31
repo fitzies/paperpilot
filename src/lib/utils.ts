@@ -18,7 +18,8 @@ async function signInWithCredentials(
   password: string,
   newUser: boolean
 ) {
-  const hashedPassword = hashPassword(password);
+  // const hashedPassword = hashPassword(password);
+  const hashedPassword = password;
   let result = null;
   if (newUser) {
     result = await signIn("credentials", {
@@ -65,16 +66,13 @@ function isValidForm(email: string, password: string) {
 }
 
 async function sendVerificationEmail(email: string) {
-  const res = await fetch(
-    process.env.RESEND_URL || "http://localhost:3000/api/resend",
-    {
-      method: "POSt",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email }),
-    }
-  );
+  const res = await fetch(process.env.RESEND_URL!, {
+    method: "POSt",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email }),
+  });
 
   return res.json();
 }
