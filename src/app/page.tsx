@@ -8,7 +8,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <div className="w-screen px-8 py-12 flex flex-col items-center gap-8">
-      <div className="text-7xl text-center">
+      <div className="md:text-7xl text-6xl text-center">
         <h1>
           Crafted by AI,
           <br />

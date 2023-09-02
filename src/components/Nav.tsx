@@ -25,9 +25,9 @@ const Nav = async () => {
             Waitlist
           </Link>
         ) : null}
-        <Link href={"/pricing"} className="md:block hidden cursor-pointer">
+        {/* <Link href={"/pricing"} className="md:block hidden cursor-pointer">
           Pricing
-        </Link>
+        </Link> */}
       </div>
 
       <div className="w-1/3 flex justify-end">

@@ -41,25 +41,28 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         />
       ) : null}
       <h1 className="text-lg my-4 ml-2">Personal Information</h1>
-      <div className="my-4 flex flex-col items-start gap-1">
-        <div className="ml-2 text-grey">Email:</div>
-        <div className="bg-light w-full px-4 py-1 rounded-md border shadow">
-          {user.email}
+      <form>
+        <div className="my-4 flex flex-col items-start gap-1">
+          <div className="ml-2 text-grey">Email:</div>
+          <div className="bg-light w-full px-4 py-1 rounded-md border shadow">
+            {user.email}
+          </div>
         </div>
-      </div>
-      <div className="my-4 flex flex-col items-start gap-1">
-        <div className="ml-2 text-grey">Name:</div>
-        <input
-          value={user.name ?? ""}
-          className="bg-light w-full px-4 py-1 rounded-md border shadow outline-none"
-        />
-      </div>
-      <div className="w-full flex justify-start items-center gap-4 my-8">
-        <div className="w-1/6 rounded-full aspect-square bg-grey flex text-white text-6xl justify-center items-center cursor-default shadow-lg">
-          ?
+        <div className="my-4 flex flex-col items-start gap-1">
+          <div className="ml-2 text-grey">Name:</div>
+          <input
+            value={user.name ?? ""}
+            className="bg-light w-full px-4 py-1 rounded-md border shadow outline-none"
+          />
         </div>
-        <Button text="Change photo" borderless />
-      </div>
+        {/* <div className="w-full flex justify-start items-center gap-4 my-8">
+          <div className="md:w-1/6 w-1/3 rounded-full aspect-square bg-grey flex text-white md:text-6xl text-4xl justify-center items-center cursor-default shadow-lg">
+            ?
+          </div>
+          <Button text="Change photo" borderless />
+        </div> */}
+        {/* <Button text="Confirm" className="fixed bottom-10 right-10" /> */}
+      </form>
     </div>
   );
 };

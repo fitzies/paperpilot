@@ -94,7 +94,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
           }}
         />
       </div>
-      <p className="text-grey text-center w-1/3 mx-auto text-sm mt-8">
+      <p className="text-grey text-center md:w-1/3 w-2/3 mx-auto text-sm mt-8">
         By clicking &quot;Continue with Apple/Google/Email&quot; above, you
         acknowledge that you have read and understood, and agree to Paperpilots
         <span className="underline">Terms & Conditions</span>.
