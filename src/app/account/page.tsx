@@ -1,4 +1,6 @@
+import Button from "@/components/Button";
 import Divider from "@/components/Divider";
+import LogoutButton from "@/components/LogoutButton";
 import ResendVerificationEmailButton from "@/components/ResendVerificationEmailButton";
 import { getUserFromServer } from "@/lib/utils";
 
@@ -21,7 +23,10 @@ const Page = async ({ params }: { params: { slug: string } }) => {
   return (
     <div className="w-2/3 mx-auto text-lg">
       {/* {JSON.stringify(user)} */}
-      <h1 className="text-xl">Account</h1>
+      <div className="flex justify-between items-center">
+        <h1 className="text-xl">Account</h1>
+        <LogoutButton />
+      </div>
       <Divider size="full" />
       {!user.verified ? (
         <AccountBox
@@ -43,8 +48,17 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         </div>
       </div>
       <div className="my-4 flex flex-col items-start gap-1">
-        <div className="ml-2 text-grey">Full name:</div>
-        <input className="bg-light w-full px-4 py-1 rounded-md border shadow outline-none" />
+        <div className="ml-2 text-grey">Name:</div>
+        <input
+          value={user.name ?? ""}
+          className="bg-light w-full px-4 py-1 rounded-md border shadow outline-none"
+        />
+      </div>
+      <div className="w-full flex justify-start items-center gap-4 my-8">
+        <div className="w-1/6 rounded-full aspect-square bg-grey flex text-white text-6xl justify-center items-center cursor-default shadow-lg">
+          ?
+        </div>
+        <Button text="Change photo" borderless />
       </div>
     </div>
   );

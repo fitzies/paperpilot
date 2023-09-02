@@ -66,8 +66,8 @@ function isValidForm(email: string, password: string) {
 }
 
 async function sendVerificationEmail(email: string) {
-  const res = await fetch(process.env.RESEND_URL!, {
-    method: "POSt",
+  const res = await fetch("/api/resend", {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },

@@ -38,7 +38,7 @@ const Sidebar = ({
 
   return (
     <>
-      <div className="w-1/5 aspect-[3/2] shadow-xl bg-light rounded-lg flex flex-col items-center py-8 px-4">
+      <div className="md:w-1/5 w-[90%] aspect-[1.75/2] shadow-xl bg-light rounded-lg flex flex-col items-center py-8 px-4">
         <div className="w-full flex items-center mb-4 rounded-lg p-1">
           <RadialProgress percent={percentGenerated} />
           <h1 className="text-lg font-bold text-center mt-4">

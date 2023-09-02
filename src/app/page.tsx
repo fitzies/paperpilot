@@ -22,13 +22,23 @@ const Page = async ({ params }: { params: { slug: string } }) => {
       </p>
       <div className="flex gap-4">
         {user?.waitlisted === true || !user ? (
-          <Button text="Join the waitlist" size="large" color="black" />
+          <Button
+            text="Join the waitlist"
+            size="large"
+            color="black"
+            href="/waitlist"
+          />
         ) : (
-          <Button text="Platform" size="large" color="black" />
+          <Button
+            text="Use platform"
+            size="large"
+            color="black"
+            href="/platform"
+          />
         )}
         <Button text="Discover" size="large" />
       </div>
-      <div className="w-5/6 rounded-lg p-1">
+      <div className="w-5/6 rounded-lg p-1 md:block hidden">
         <Image src={screenshot} alt="" className="w-full " />
       </div>
     </div>

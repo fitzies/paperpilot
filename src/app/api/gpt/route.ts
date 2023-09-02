@@ -13,12 +13,15 @@ export async function POST(request: Request) {
     messages: [
       {
         role: "system",
-        content:
-          "You are Quillbot, you paraphrase the text that I give you and to make it sound like a human wrote it.",
+        content: "You are Quillbot, you paraphrase the text that I give you.",
       },
-      { role: "user", content: text },
+      {
+        role: "user",
+        content: text,
+      },
     ],
-    model: "gpt-3.5-turbo",
+    model: "gpt-4",
+    // model: "gpt-3.5-turbo",
   });
 
   return NextResponse.json({ message: completion.choices });

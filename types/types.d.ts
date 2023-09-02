@@ -1,0 +1,1 @@
+type ModeType = "Formalize" | "Humanize";
