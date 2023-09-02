@@ -42,7 +42,7 @@ const Page = ({ params }: { params: { slug: string } }) => {
 
   return (
     <div className="w-screen">
-      <div className="w-1/3 mx-auto py-10 flex flex-col items-center gap-3">
+      <div className="md:w-1/3 w-full mx-auto py-10 flex flex-col items-center gap-3">
         <h1 className="text-5xl font-bold my-6">Sign up</h1>
         <LineInput
           name="email"
@@ -78,6 +78,9 @@ const Page = ({ params }: { params: { slug: string } }) => {
           borderless
           icon={<FcGoogle className="text-xl" />}
           hover
+          onClick={() => {
+            toast("Coming soon...");
+          }}
         />
         <Button
           text="Continue with Github"
@@ -86,6 +89,9 @@ const Page = ({ params }: { params: { slug: string } }) => {
           borderless
           icon={<BsGithub className="text-xl" />}
           hover
+          onClick={() => {
+            toast("Coming soon...");
+          }}
         />
       </div>
       <p className="text-grey text-center w-1/3 mx-auto text-sm mt-8">
