@@ -21,7 +21,7 @@ const Nav = async () => {
           </Link>
         ) : null}
         {!user || user.waitlisted === true ? (
-          <Link href={"/waitlist"} className="cursor-pointer">
+          <Link href={"/waitlist"} className="md:block hidden cursor-pointer">
             Waitlist
           </Link>
         ) : null}
