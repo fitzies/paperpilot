@@ -1,1 +1,1 @@
-type ModeType = "Formalize" | "Humanize" | "Paraphrase";
+type ModeType = "Formalize" | "Humanize" | "Paraphrase" | "Shorten";

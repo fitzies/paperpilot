@@ -52,6 +52,12 @@ const Application = () => {
               setActive={() => setMode(() => "Paraphrase")}
               current={mode}
             />
+            <Mode
+              name="Shorten"
+              emoji="🏳️"
+              setActive={() => setMode(() => "Shorten")}
+              current={mode}
+            />
           </div>
         </TextInput>
         <Sidebar

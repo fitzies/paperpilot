@@ -6,7 +6,10 @@ async function generateResponse(text: string, mode: ModeType) {
     text = "Paraphrase this text and make it sound academic: " + text;
   }
   if (mode === "Paraphrase") {
-    text = "Paraphrase this text as if you were QuillBot: " + text;
+    text = "Paraphrase this text regularly: " + text;
+  }
+  if (mode === "Shorten") {
+    text = "Make this text shorter: " + text;
   }
 
   console.log(text);
