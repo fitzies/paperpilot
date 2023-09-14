@@ -23,6 +23,7 @@ const Application = () => {
       setRandomLikelihood(() => randomInteger);
       setCanSubmit(() => true);
     }
+    console.log("Request timeout");
   };
 
   const clearText = () => {

@@ -24,6 +24,10 @@ async function generateResponse(text: string, mode: ModeType) {
     }),
   });
 
+  if (res.status === 504) {
+    return null;
+  }
+
   return res.json();
 }
 
