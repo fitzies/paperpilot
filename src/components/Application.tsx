@@ -54,7 +54,7 @@ const Application = () => {
             />
             <Mode
               name="Shorten"
-              emoji="🏳️"
+              emoji="🩳"
               setActive={() => setMode(() => "Shorten")}
               current={mode}
             />
