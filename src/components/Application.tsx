@@ -5,6 +5,7 @@ import Sidebar from "./Sidebar";
 import TextInput from "./TextInput";
 import { generateResponse } from "@/lib/gpt";
 import Mode from "./Mode";
+import { toast } from "react-toastify";
 
 const Application = () => {
   const [text, setText] = useState<string>("");
@@ -23,7 +24,8 @@ const Application = () => {
       setRandomLikelihood(() => randomInteger);
       setCanSubmit(() => true);
     }
-    console.log("Request timeout");
+    toast.error("The text was too long, please submit something shorter.");
+    setCanSubmit(() => true);
   };
 
   const clearText = () => {
