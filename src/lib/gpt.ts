@@ -5,6 +5,9 @@ async function generateResponse(text: string, mode: ModeType) {
   if (mode === "Formalize") {
     text = "Paraphrase this text and make it sound academic: " + text;
   }
+  if (mode === "Paraphrase") {
+    text = "Paraphrase this text as if you were QuillBot: " + text;
+  }
 
   console.log(text);
 

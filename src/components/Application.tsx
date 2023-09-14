@@ -46,6 +46,12 @@ const Application = () => {
               setActive={() => setMode(() => "Formalize")}
               current={mode}
             />
+            <Mode
+              name="Paraphrase"
+              emoji="🏳️"
+              setActive={() => setMode(() => "Formalize")}
+              current={mode}
+            />
           </div>
         </TextInput>
         <Sidebar

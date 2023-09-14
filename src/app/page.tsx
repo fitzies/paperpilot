@@ -12,7 +12,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         <h1>
           Crafted by AI,
           <br />
-          Perfected by Paper Pilot
+          Perfected by Paper Pilot.
         </h1>
       </div>
       <p className="text-grey text-center text-lg w-2/3">
