@@ -49,7 +49,7 @@ const Application = () => {
             <Mode
               name="Paraphrase"
               emoji="🏳️"
-              setActive={() => setMode(() => "Formalize")}
+              setActive={() => setMode(() => "Paraphrase")}
               current={mode}
             />
           </div>
