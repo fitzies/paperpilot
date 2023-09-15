@@ -25,10 +25,9 @@ const Application = () => {
       setCanSubmit(() => true);
     }
     toast.error("The text was too long, please submit something shorter.");
-    console.log(result.status);
+    console.log(result);
     setCanSubmit(() => true);
   };
-
   const clearText = () => {
     setText(() => "");
   };
