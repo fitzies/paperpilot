@@ -23,8 +23,9 @@ const Application = () => {
       const randomInteger = Math.floor(Math.random() * 11) + 1;
       setRandomLikelihood(() => randomInteger);
       setCanSubmit(() => true);
+    } else {
+      toast.error("The text was too long, please submit something shorter.");
     }
-    toast.error("The text was too long, please submit something shorter.");
     console.log(result);
     setCanSubmit(() => true);
   };
