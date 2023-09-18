@@ -28,7 +28,7 @@ export const authOptions: NextAuthOptions = {
             data: {
               email: credentials!.email,
               password: credentials!.password,
-              waitlisted: true,
+              waitlisted: false,
             },
           });
           // Return the new user because the email didn't exist before

@@ -12,11 +12,11 @@ const Nav = async () => {
         <Link href={"/"} className="font-bold text-lg">
           Paperpilot
         </Link>
-        <span className="italic font-bold text-lg md:block hidden"> V2</span>
+        <span className="italic font-bold text-lg md:block hidden">.me</span>
       </div>
       <div className="flex gap-6 w-1/3 justify-center">
         {user ? 
-          <Link href={"/platform"} className="md:block hidden cursor-pointer"></Link> : null
+          <Link href={"/platform"} className="md:block hidden cursor-pointer">Platform</Link> : null
         }  
       </div>
       {/* <div className="flex gap-6 w-1/3 justify-center">
