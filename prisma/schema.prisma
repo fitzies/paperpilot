@@ -18,5 +18,5 @@ model User {
   password  String
 
   verified Boolean @default(false)
-  waitlisted Boolean @default(true)
+  waitlisted Boolean @default(false)
 }

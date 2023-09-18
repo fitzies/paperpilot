@@ -10,11 +10,16 @@ const Nav = async () => {
     <div className="w-screen flex justify-between items-center px-10 py-6">
       <div className="w-1/3 flex justify-start items-center gap-1">
         <Link href={"/"} className="font-bold text-lg">
-          Paperpilot.io
+          Paperpilot
         </Link>
         <span className="italic font-bold text-lg md:block hidden"> V2</span>
       </div>
       <div className="flex gap-6 w-1/3 justify-center">
+        {user ? 
+          <Link href={"/platform"} className="md:block hidden cursor-pointer"></Link> : null
+        }  
+      </div>
+      {/* <div className="flex gap-6 w-1/3 justify-center">
         {user && user.waitlisted === false ? (
           <Link href={"/platform"} className="md:block hidden cursor-pointer">
             Platform
@@ -27,8 +32,8 @@ const Nav = async () => {
         ) : null}
         {/* <Link href={"/pricing"} className="md:block hidden cursor-pointer">
           Pricing
-        </Link> */}
-      </div>
+        </Link>
+       */}
 
       <div className="w-1/3 flex justify-end">
         {/* {status === "loading" ? <Button loading text="Sign in" /> : null} */}
